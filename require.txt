@@ -1,4 +1,0 @@
-pip install zenml
-zenml init
-zenml integration list
-zenml up --blocking (for windows)
