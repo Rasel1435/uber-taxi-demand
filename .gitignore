@@ -6,6 +6,5 @@ notebooks/c_Model/mlruns
 notebooks/d_Tuning/mlruns
 code/mlruns
 steps/__pycache__
-.zen
 __pycache__
 uber-taxi-demand/code/some_Backup_resorce.ipynb

@@ -10,6 +10,7 @@ from steps.add_window_features import AddWindowFeatures
 from steps.add_exp_window_features import ADDExpandingWindowFeatures
 from steps.select_best_features import SelectBestFeatures
 from steps.normalize_Scaling import NormalizeScaling
+from steps.load import load_features
 from steps.reduce_Dimensionality import ReduceDimensionality
 
 
@@ -29,6 +30,7 @@ def run_pipeline():
         data = SelectBestFeatures(data)
         data = NormalizeScaling(data)
         # data = ReduceDimensionality(data)
+        data = load_features(data)
         logging.info(f'==> Successfully processed run_pipeline()')
     except Exception as e:
         logging.error(f'==> Error in run_pipeline(): {e}')
