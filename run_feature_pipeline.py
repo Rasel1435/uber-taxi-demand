@@ -2,7 +2,7 @@ import config
 import logging
 
 from zenml import pipeline
-from steps.ingest import ingest_data, optimizeToFitMemory
+from steps.ingest import ingest_data
 from steps.clean import clean_data
 from steps.add_temporal_features import AddTemporalFeatures
 from steps.add_lag_features import AddLagFeatures
@@ -28,7 +28,7 @@ def run_pipeline():
         data = ADDExpandingWindowFeatures(data)
         data = SelectBestFeatures(data)
         data = NormalizeScaling(data)
-        data = ReduceDimensionality(data)
+        # data = ReduceDimensionality(data)
         logging.info(f'==> Successfully processed run_pipeline()')
     except Exception as e:
         logging.error(f'==> Error in run_pipeline(): {e}')

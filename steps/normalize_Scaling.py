@@ -1,5 +1,6 @@
 import logging
 import pandas as pd
+import config
 
 from zenml import step
 from typing import Union

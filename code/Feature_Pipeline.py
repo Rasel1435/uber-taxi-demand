@@ -1,7 +1,7 @@
 import pandas as pd
 import dask.dataframe as dd
 import logging
-# import hopsworks
+import hopsworks
 
 from sklearn.decomposition import PCA
 from sklearn.tree import DecisionTreeRegressor
@@ -12,6 +12,7 @@ from feature_engine.timeseries.forecasting import LagFeatures, WindowFeatures, E
 from math import sqrt
 
 ### Logging Configuration
+# dZlKejE400BYPINW.93JR3IHAIDib8v4WliVyFSRttJXC8Jbgb40ZTWmrBN0ksAtKyoL0cHsZZ4Aj9BsM
 logging.basicConfig(
     level=logging.DEBUG,
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -259,7 +260,7 @@ def load_features(featuregroup_name, dataframe):
     try:
         # Connect to the feature store
         project = hopsworks.login(
-            api_key_value="iS9O9H01oRxEzuHI.YMzWi2ap65sQZqqoZR6tO8PICrbPwl0zCuP94bqX1miHK2m66EkcPEZwMWY88wTk")
+            api_key_value="dZlKejE400BYPINW.93JR3IHAIDib8v4WliVyFSRttJXC8Jbgb40ZTWmrBN0ksAtKyoL0cHsZZ4Aj9BsM")
         fs = project.get_feature_store()
         featurestore = fs.get_or_create_feature_group(
             name=featuregroup_name, version=1)
