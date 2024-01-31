@@ -30,7 +30,7 @@ def run_pipeline():
         data = SelectBestFeatures(data)
         data = NormalizeScaling(data)
         # data = ReduceDimensionality(data)
-        data = load_features(data)
+        # data = load_features(data)
         logging.info(f'==> Successfully processed run_pipeline()')
     except Exception as e:
         logging.error(f'==> Error in run_pipeline(): {e}')

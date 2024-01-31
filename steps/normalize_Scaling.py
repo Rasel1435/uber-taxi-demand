@@ -40,6 +40,6 @@ def NormalizeScaling(data: pd.DataFrame) -> Union[pd.DataFrame, None]:
         return None
 
 
-if __name__ == "__main__":
-    data = pd.read_csv("data/train.csv")
-    print(NormalizeScaling(data))
+# if __name__ == "__main__":
+#     data = pd.read_csv("data/train.csv")
+#     print(NormalizeScaling(data))
