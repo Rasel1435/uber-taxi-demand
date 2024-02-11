@@ -1,6 +1,4 @@
-import config
 import logging
-import pandas as pd
 
 from zenml import pipeline
 from steps.split import split

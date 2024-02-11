@@ -33,6 +33,7 @@ def train(data: Dict) -> Union[bool, None]:
         X_test = data["X_test"]
         y_train = data["y_train"]
         y_test = data["y_test"]
+        
         mlflow.set_experiment("TimeSeries")
         with mlflow.start_run():
             x_model = xgb.XGBRegressor()
