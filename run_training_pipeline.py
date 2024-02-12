@@ -1,21 +1,22 @@
-import logging
-
 from zenml import pipeline
 from steps.split import split
 from steps.train import train
+
+from logs.logs import configure_logger
+logger = configure_logger()
 
 
 @pipeline(enable_cache=True)
 def run_train_pipeline():
     try:
-        logging.info(f'==> Processing run_pipeline()')
+        logger.info(f'==> Processing run_pipeline()')
         
         data = split()
         data = train(data) 
         
-        logging.info(f'==> Successfully processed run_pipeline()')
+        logger.info(f'==> Successfully processed run_pipeline()')
     except Exception as e:
-        logging.error(f'==> Error in run_pipeline(): {e}')
+        logger.error(f'==> Error in run_pipeline(): {e}')
         
         
 if __name__ == "__main__":

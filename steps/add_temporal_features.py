@@ -1,9 +1,11 @@
-import logging
 import pandas as pd
 
 from zenml import step
 from typing import Union
 from feature_engine.datetime import DatetimeFeatures
+
+from logs.logs import configure_logger
+logger = configure_logger()
 
 
 @step(enable_cache=True)
@@ -15,13 +17,13 @@ def AddTemporalFeatures(data: pd.DataFrame) -> Union[pd.DataFrame, None]:
     ]
 
     try:
-        logging.info(f'==> Processing AddTemporalFeatures()')
+        logger.info(f'==> Processing AddTemporalFeatures()')
         temporal = DatetimeFeatures(
             features_to_extract=features_to_extract).fit_transform(data[['timestamp']])
         for col in temporal.columns:
             data.loc[:, col] = temporal[col].values
-        logging.info(f'==> Successfully processed AddTemporalFeatures()')
+        logger.info(f'==> Successfully processed AddTemporalFeatures()')
         return data
     except Exception as e:
-        logging.error(f'==> Error in AddTemporalFeatures()')
+        logger.error(f'==> Error in AddTemporalFeatures()')
         return None

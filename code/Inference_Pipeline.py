@@ -4,6 +4,8 @@
 #
 
 import pandas as pd
+from logs.logs import configure_logger
+logger = configure_logger()
 
 
 feature_path = '../data/feature-2023.parquet'

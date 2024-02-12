@@ -8,7 +8,8 @@ from zenml import step
 from typing import Union
 from sklearn.preprocessing import StandardScaler
 
-logger = logging.getLogger(__name__)
+from logs.logs import configure_logger
+logger = configure_logger()
 
 
 @step(enable_cache=True)

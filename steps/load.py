@@ -1,4 +1,3 @@
-import logging
 import config
 import hopsworks
 import pandas as pd
@@ -8,7 +7,8 @@ from zenml import step
 from joblib import dump
 from typing import Union
 
-
+from logs.logs import configure_logger
+logger = configure_logger()
 @step(enable_cache=True)
 def load_features(data: pd.DataFrame) -> bool:
     """
@@ -21,7 +21,7 @@ def load_features(data: pd.DataFrame) -> bool:
     - None
     """
     try:
-        logging.info(
+        logger.info(
             f'==> Loading features into feature group {config.FEATURE_GROUP_NAME}')
         # Load the features into a feature group in Hopsworks Feature Store
         # Connect to the feature store
@@ -36,11 +36,11 @@ def load_features(data: pd.DataFrame) -> bool:
             featurestore.update_feature_description(feature)
         # closing hopsworks connection
         project.close()
-        logging.info(
+        logger.info(
             f'==> Successfully loaded features into feature group {config.FEATURE_GROUP_NAME}')
         return True
     except Exception as e:
-        logging.error(
+        logger.error(
             f'==> Failed to load features into feature group {config.FEATURE_GROUP_NAME}')
         return False
 

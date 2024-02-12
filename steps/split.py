@@ -1,12 +1,11 @@
 import pandas as pd
-import logging
 
 from zenml import step
 from typing import Union, Dict
 from sklearn.model_selection import train_test_split
 
-logger = logging.getLogger(__name__)
-
+from logs.logs import configure_logger
+logger = configure_logger()
 @step(enable_cache=True)
 def split() -> Union[Dict, None]:
     """Splits data into train and test sets.

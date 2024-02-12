@@ -1,4 +1,3 @@
-import logging
 import pandas as pd
 
 from zenml import step
@@ -7,8 +6,8 @@ from dask import dataframe as dd
 from sklearn.tree import DecisionTreeRegressor
 from feature_engine.selection import SmartCorrelatedSelection, RecursiveFeatureElimination
 
-logger = logging.getLogger(__name__)
-
+from logs.logs import configure_logger
+logger = configure_logger()
 @step(enable_cache=True)
 def SelectBestFeatures(
     data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, dd.DataFrame, None]:

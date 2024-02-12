@@ -10,3 +10,5 @@ __pycache__
 uber-taxi-demand/code/some_Backup_resorce.ipynb
 uber-taxi-demand/mlruns
 mlruns
+logs\__pycache__
+code\__pycache__

@@ -13,12 +13,8 @@ from sklearn.metrics import mean_absolute_percentage_error, r2_score
 
 warnings.filterwarnings('ignore')
 
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt='%d-%b(%m)-%Y %I:%M:%S',
-)
-logger = logging.getLogger(__name__)
+from logs.logs import configure_logger
+logger = configure_logger()
 
 #Loading data
 def getData(path: str) -> pd.DataFrame:

@@ -1,4 +1,3 @@
-import logging
 import pandas as pd
 
 from zenml import step
@@ -6,7 +5,8 @@ from typing import Union
 from dask import dataframe as dd
 from sklearn.decomposition import PCA
 
-logger = logging.getLogger(__name__)
+from logs.logs import configure_logger
+logger = configure_logger()
 
 @step(enable_cache=True)
 def ReduceDimensionality(

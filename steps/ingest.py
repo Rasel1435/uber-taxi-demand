@@ -6,7 +6,8 @@ from typing import Union
 from dask import dataframe as dd
 
 
-logger = logging.getLogger(__name__)
+from logs.logs import configure_logger
+logger = configure_logger()
 
 
 # Define the optimizeToFitMemory step

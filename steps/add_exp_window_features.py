@@ -6,7 +6,8 @@ from typing import Union
 from dask import dataframe as dd
 from feature_engine.timeseries.forecasting import ExpandingWindowFeatures
 
-logger = logging.getLogger(__name__)
+from logs.logs import configure_logger
+logger = configure_logger()
 
 @step(enable_cache=True)
 def ADDExpandingWindowFeatures(

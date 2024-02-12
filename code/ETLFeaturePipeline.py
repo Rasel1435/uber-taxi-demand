@@ -9,7 +9,8 @@ sys.path.append(os.path.join(parent, 'steps'))
 
 # Now you can import modules from the parent directory
 import config
-import logging
+from logs.logs import configure_logger
+logger = configure_logger()
 
 from zenml import pipeline
 from steps.ingest import ingest_data
@@ -30,7 +31,7 @@ def run_pipeline():
     Pipeline that runs the ingest, clean, lag and window features.
     """
     try:
-        logging.info(f'==> Processing run_pipeline()')
+        logger.info(f'==> Processing run_pipeline()')
         data = ingest_data(DATA_SOURCE=config.DATA_SOURCE)
         data = clean_data(data)
         data = AddTemporalFeatures(data)
@@ -41,9 +42,9 @@ def run_pipeline():
         data = NormalizeScaling(data)
         data = ReduceDimensionality(data)
         data = load_features(data)
-        logging.info(f'==> Successfully processed run_pipeline()')
+        logger.info(f'==> Successfully processed run_pipeline()')
     except Exception as e:
-        logging.error(f'==> Error in run_pipeline(): {e}')
+        logger.error(f'==> Error in run_pipeline(): {e}')
 
 
 if __name__ == "__main__":

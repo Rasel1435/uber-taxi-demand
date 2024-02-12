@@ -1,6 +1,5 @@
 import pandas as pd
 import dask.dataframe as dd
-import logging
 import hopsworks
 
 from sklearn.decomposition import PCA
@@ -13,12 +12,9 @@ from math import sqrt
 
 ### Logging Configuration
 # dZlKejE400BYPINW.93JR3IHAIDib8v4WliVyFSRttJXC8Jbgb40ZTWmrBN0ksAtKyoL0cHsZZ4Aj9BsM
-logging.basicConfig(
-    level=logging.DEBUG,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    datefmt= '%d-%b(%m)-%Y %I:%M:%S',
-)
-logger = logging.getLogger(__name__)
+from logs.logs import configure_logger
+# Call configure_logger function to set up the logger
+logger = configure_logger()
 PATH = '.'
 
 # ETL - Extract

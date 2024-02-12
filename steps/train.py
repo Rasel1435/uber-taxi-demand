@@ -1,7 +1,6 @@
 import mlflow.sklearn
 import mlflow
 import xgboost as xgb
-import logging
 
 from scipy.stats import randint
 from sklearn.model_selection import RandomizedSearchCV
@@ -13,8 +12,8 @@ from zenml import step
 from typing import Union
 from typing import Dict
 
-logger = logging.getLogger(__name__)
-
+from logs.logs import configure_logger
+logger = configure_logger()
 
 @step(enable_cache=True)
 def train(data: Dict) -> Union[bool, None]:
