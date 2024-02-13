@@ -3,7 +3,6 @@ import mlflow.sklearn
 import mlflow
 import warnings
 import xgboost as xgb
-import logging
 
 from scipy.stats import randint
 from sklearn.model_selection import RandomizedSearchCV

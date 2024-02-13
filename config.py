@@ -64,3 +64,8 @@ FEATURE_DESCRIPTIONS = [
     {"name": "taxi_demand_window_24_mean",
         "description": "Mean demand for taxis in a window of 24 timestamps"},
 ]
+
+TABLE_NAME = 'uber-texi-demand-hourly'
+AWS_ACCESS_KEY = ''
+AWS_SECRET_ACCESS_KEY = ''
+MODEL_NAME = 'uber-taxi-demand-hourly'
