@@ -5,7 +5,7 @@ from typing import Union
 from dask import dataframe as dd
 from sklearn.decomposition import PCA
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 @step(enable_cache=True)

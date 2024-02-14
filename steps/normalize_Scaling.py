@@ -8,7 +8,7 @@ from zenml import step
 from typing import Union
 from sklearn.preprocessing import StandardScaler
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

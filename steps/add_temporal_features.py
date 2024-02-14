@@ -4,7 +4,7 @@ from zenml import step
 from typing import Union
 from feature_engine.datetime import DatetimeFeatures
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

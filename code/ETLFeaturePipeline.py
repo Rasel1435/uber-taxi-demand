@@ -9,7 +9,7 @@ sys.path.append(os.path.join(parent, 'steps'))
 
 # Now you can import modules from the parent directory
 import config
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 from zenml import pipeline

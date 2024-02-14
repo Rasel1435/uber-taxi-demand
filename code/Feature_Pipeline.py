@@ -12,7 +12,7 @@ from math import sqrt
 
 ### Logging Configuration
 # dZlKejE400BYPINW.93JR3IHAIDib8v4WliVyFSRttJXC8Jbgb40ZTWmrBN0ksAtKyoL0cHsZZ4Aj9BsM
-from logs.logs import configure_logger
+from logs import configure_logger
 # Call configure_logger function to set up the logger
 logger = configure_logger()
 PATH = '.'

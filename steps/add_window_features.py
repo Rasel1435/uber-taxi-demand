@@ -6,7 +6,7 @@ from dask import dataframe as dd
 from typing import Union
 from feature_engine.timeseries.forecasting import WindowFeatures
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

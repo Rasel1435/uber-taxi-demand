@@ -4,7 +4,7 @@ from zenml import step
 from typing import Union, Dict
 from sklearn.model_selection import train_test_split
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 @step(enable_cache=True)
 def split() -> Union[Dict, None]:

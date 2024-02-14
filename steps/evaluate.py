@@ -9,7 +9,7 @@ from pandas import DataFrame, Series
 from sklearn.metrics import mean_squared_error, mean_absolute_error
 from sklearn.metrics import mean_absolute_percentage_error, r2_score
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

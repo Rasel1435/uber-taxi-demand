@@ -12,7 +12,7 @@ from sklearn.metrics import mean_absolute_percentage_error, r2_score
 
 warnings.filterwarnings('ignore')
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 #Loading data

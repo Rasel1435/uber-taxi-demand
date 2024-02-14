@@ -2,7 +2,7 @@ from zenml import pipeline
 from steps.split import split
 from steps.train import train
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

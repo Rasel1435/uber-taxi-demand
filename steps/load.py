@@ -7,7 +7,7 @@ from zenml import step
 from joblib import dump
 from typing import Union
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 @step(enable_cache=True)
 def load_features(data: pd.DataFrame) -> bool:

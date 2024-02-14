@@ -4,7 +4,7 @@
 #
 
 import pandas as pd
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

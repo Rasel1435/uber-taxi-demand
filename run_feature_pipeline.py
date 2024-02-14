@@ -12,7 +12,7 @@ from steps.normalize_Scaling import NormalizeScaling
 from steps.load import load_features
 from steps.reduce_Dimensionality import ReduceDimensionality
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 @pipeline(enable_cache=True)
 def run_pipeline():

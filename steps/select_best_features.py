@@ -6,7 +6,7 @@ from dask import dataframe as dd
 from sklearn.tree import DecisionTreeRegressor
 from feature_engine.selection import SmartCorrelatedSelection, RecursiveFeatureElimination
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 @step(enable_cache=True)
 def SelectBestFeatures(

@@ -6,7 +6,7 @@ from typing import Union
 from dask import dataframe as dd
 
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 

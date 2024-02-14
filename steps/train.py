@@ -10,7 +10,7 @@ from pandas import DataFrame, Series
 from zenml import step, client
 from typing import Union, Dict
 
-from logs.logs import configure_logger
+from logs import configure_logger
 logger = configure_logger()
 
 
