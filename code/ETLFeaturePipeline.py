@@ -25,7 +25,7 @@ from steps.load import load_features
 from steps.reduce_Dimensionality import ReduceDimensionality
 
 
-@pipeline(enable_cache=True, name='ETLFeaturePipeline', enable_step_logs=True)
+@pipeline(enable_cache=False, name='ETLFeaturePipeline', enable_step_logs=True)
 def run_pipeline():
     """
     Pipeline that runs the ingest, clean, lag and window features.

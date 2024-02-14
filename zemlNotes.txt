@@ -1,0 +1,9 @@
+zenml --help
+zenml experiment-tracker register UberTaxiDeamnExperimentTracker --flavor=mlflow
+zenml model-deployer register UberTaxiDeamnModelDeployer --flavor=mlflow
+zenml model-registry register UberTaxiDeamnModelRegistry --flavor=mlflow
+
+#Register new Stack
+zenml stack register UberTaxiDemandDevStack -a default -o default -r UberTaxiDeamnModelRegistry -d UberTaxiDeamnModelDeployer -e UberTaxiDeamnExperimentTracker
+zenml stack set ID OR Stack_Name
+zenml init
