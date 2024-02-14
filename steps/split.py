@@ -3,23 +3,20 @@ import pandas as pd
 from zenml import step
 from typing import Union, Dict
 from sklearn.model_selection import train_test_split
-
 from logs import configure_logger
+
 logger = configure_logger()
+
 @step(enable_cache=True)
 def split() -> Union[Dict, None]:
-    """Splits data into train and test sets.
-
-    Args:
-        data (Union[pd.DataFrame, dd.DataFrame]): Data to split.
-
-    Returns:
-        Union[pd.DataFrame, dd.DataFrame, None]: Train and test data.
     """
+    Split the data into train and test sets.
+    """
+    logger.info("Splitting the data into train and test sets.")
     try:
-        logger.info(f'==> Processing splitting()')
-        data = pd.read_parquet(r'data/feature-2022.parquet')
-        X = data.drop(columns=["taxi_demand",])
+        logger.info(f'==> Processing split()')
+        data = pd.read_parquet('data/feature.parquet')
+        X = data.drop(columns=["taxi_demand",'timestamp'])
         y = data.taxi_demand
         X_train, X_test, y_train, y_test= train_test_split(X, y, test_size=0.2, random_state=42)
         
