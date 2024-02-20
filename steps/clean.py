@@ -10,7 +10,7 @@ from logs import configure_logger
 logger = configure_logger()
 
 
-@step(enable_cache=True)
+@step(name='Data Cleaning', enable_step_logs=True, enable_artifact_metadata=True)
 def clean_data(data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, dd.DataFrame, None]:
     """
     Clean the data by removing duplicates and null values.
@@ -18,6 +18,8 @@ def clean_data(data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, d
 
     try:
         logger.info("==> Processing clean_data()")
+        data = data.drop_duplicates()
+        data = data.dropna(axis=0, how='any')
         data['timestamp'] = pd.to_datetime(data.tpep_pickup_datetime)
         data.drop(columns=['tpep_pickup_datetime'], inplace=True)
         data.rename(

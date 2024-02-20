@@ -8,7 +8,7 @@ from feature_engine.selection import SmartCorrelatedSelection, RecursiveFeatureE
 
 from logs import configure_logger
 logger = configure_logger()
-@step(enable_cache=True)
+@step(name= "Select Best Features", enable_step_logs=True, enable_artifact_metadata=True)
 def SelectBestFeatures(
     data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, dd.DataFrame, None]:
     """

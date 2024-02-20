@@ -9,7 +9,7 @@ from feature_engine.timeseries.forecasting import ExpandingWindowFeatures
 from logs import configure_logger
 logger = configure_logger()
 
-@step(enable_cache=True)
+@step(name='Generate exp Window Features', enable_step_logs=True, enable_artifact_metadata=True)
 def ADDExpandingWindowFeatures(
     data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, dd.DataFrame, None]:
     """

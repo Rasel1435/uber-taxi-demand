@@ -8,7 +8,7 @@ from logs import configure_logger
 logger = configure_logger()
 
 
-@step(enable_cache=True)
+@step(name='Add Temporal Features', enable_step_logs=True, enable_artifact_metadata=True)
 def AddTemporalFeatures(data: pd.DataFrame) -> Union[pd.DataFrame, None]:
     features_to_extract = [
         "month", "quarter", "semester", "week", "day_of_week", "day_of_month",

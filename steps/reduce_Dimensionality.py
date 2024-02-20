@@ -8,7 +8,7 @@ from sklearn.decomposition import PCA
 from logs import configure_logger
 logger = configure_logger()
 
-@step(enable_cache=True)
+@step(name='ReduceDimensionality', enable_step_logs=True, enable_artifact_metadata=True)
 def ReduceDimensionality(
     data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, dd.DataFrame, None]:
     """

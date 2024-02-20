@@ -66,6 +66,6 @@ FEATURE_DESCRIPTIONS = [
 ]
 
 TABLE_NAME = 'uber-texi-demand-hourly'
-AWS_ACCESS_KEY = ''
+AWS_ACCESS_KEY_ID = ''
 AWS_SECRET_ACCESS_KEY = ''
 MODEL_NAME = 'uber-taxi-demand-hourly'

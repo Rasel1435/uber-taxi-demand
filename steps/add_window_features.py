@@ -10,7 +10,7 @@ from logs import configure_logger
 logger = configure_logger()
 
 
-@step(enable_cache=True)
+@step(name='Generate Window Features', enable_step_logs=True, enable_artifact_metadata=True)
 def AddWindowFeatures(
         data: Union[dd.DataFrame, pd.DataFrame]) -> Union[dd.DataFrame, pd.DataFrame, None]:
     """Add window features to the dataframe

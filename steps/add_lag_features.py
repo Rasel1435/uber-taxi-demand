@@ -10,7 +10,7 @@ from logs import configure_logger
 logger = configure_logger()
 
 
-@step(enable_cache=True)
+@step(name='Generate Lag Features', enable_step_logs=True, enable_artifact_metadata=True)
 def AddLagFeatures(data: Union[pd.DataFrame, dd.DataFrame]) -> Union[pd.DataFrame, dd.DataFrame, None]:
     """
     Add lag features to the data.

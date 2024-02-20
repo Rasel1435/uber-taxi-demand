@@ -15,7 +15,7 @@ def split() -> Union[Dict, None]:
     logger.info("Splitting the data into train and test sets.")
     try:
         logger.info(f'==> Processing split()')
-        data = pd.read_parquet('data/feature.parquet')
+        data = pd.read_parquet('data/feature-2022.parquet')
         X = data.drop(columns=["taxi_demand",'timestamp'])
         y = data.taxi_demand
         X_train, X_test, y_train, y_test= train_test_split(X, y, test_size=0.2, random_state=42)

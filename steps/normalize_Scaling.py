@@ -12,7 +12,7 @@ from logs import configure_logger
 logger = configure_logger()
 
 
-@step(enable_cache=True)
+@step(name='Data Scaling', enable_step_logs=True, enable_artifact_metadata=True)
 def NormalizeScaling(data: pd.DataFrame) -> Union[pd.DataFrame, None]:
     """Scaling step.
     Args:
@@ -32,15 +32,12 @@ def NormalizeScaling(data: pd.DataFrame) -> Union[pd.DataFrame, None]:
         del temp
         # save Scaler model
         joblib.dump(scaler, os.path.join('model', 'scaler.pkl'))
-        logger.info(f'Scaler model saved to {os.path.join("model", "scaler.pkl")}')
-        print(data.columns)
+        logger.info(
+            f'Scaler model saved to {os.path.join("model", "scaler.pkl")}')
+        data.dropna(inplace=True)
+        data.to_parquet('data/feature.parquet', index=False)
         logger.info(f'==> Successfully processed NormalizeScaling()')
         return data
     except Exception as e:
         logger.error(f"in NormalizeScaling(): {e}")
         return None
-
-
-# if __name__ == "__main__":
-#     data = pd.read_csv("data/train.csv")
-#     print(NormalizeScaling(data))
