@@ -12,7 +12,7 @@ from logs import configure_logger
 logger = configure_logger()
 
 
-@step(name='Data Scaling', enable_step_logs=True, enable_artifact_metadata=True)
+@step(name='NormalizeScaling', enable_step_logs=True, enable_artifact_metadata=True)
 def NormalizeScaling(data: pd.DataFrame) -> Union[pd.DataFrame, None]:
     """Scaling step.
     Args:

@@ -63,5 +63,7 @@ def load_features(data: pd.DataFrame) -> bool:
 
 
 if __name__ == "__main__":
-    data = pd.read_csv(config.DATA_SOURCE)
+    data = pd.read_parquet('data/2022/january_2022-01.parquet')
     load_features(data)
+    print(data.head())
+    print(data.shape)
