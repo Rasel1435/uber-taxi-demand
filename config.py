@@ -1,3 +1,4 @@
+# DATA_SOURCE = 'https://d37ci6vzurychx.cloudfront.net/trip-data/yellow_tripdata_2023-01.parquet'
 DATA_SOURCE = 'data/2022/january_2022-01.parquet'
 FEATURE_GROUP_NAME = 'taxi_demand_hourly'
 FEATURE_GROUP_DESCRIPTION = "Hourly Taxi Demand hourly sampled"

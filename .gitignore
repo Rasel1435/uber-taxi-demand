@@ -12,3 +12,4 @@ uber-taxi-demand/mlruns
 mlruns
 logs\__pycache__
 code\__pycache__
+personalNote.py

@@ -64,10 +64,3 @@ def ingest_data(DATA_SOURCE: str) -> Union[pd.DataFrame, None]:
     except Exception as e:
         logger.error(f'in ingest_data(): {e}')
         return None
-    
-    
-if __name__ == '__main__':
-    df = ingest_data(
-        DATA_SOURCE='C:/Users/SRA/Desktop/backup/C/MLgrit/time_series_project/uber-taxi-demand/data/2022/january_2022-01.parquet')
-    print(df.head())
-    print(df.shape)

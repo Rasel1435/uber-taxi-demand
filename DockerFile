@@ -1,0 +1,21 @@
+# Use official Python image as base
+FROM python:3.10-slim
+
+# Set working directory
+WORKDIR /code
+
+# Copy requirements.txt and install Python dependencies
+COPY requirements.txt requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+RUN zenml integration install -y sklearn xgboost aws s3 mlflow
+
+# Copy the entire project directory into the container 
+COPY . .
+
+# Expose any ports the app is expecting 
+EXPOSE 8080
+EXPOSE 5000
+EXPOSE 8237
+
+# Comand to run the Time Series Forecasting project
+# CMD ['zenml', 'up']

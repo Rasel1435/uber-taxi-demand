@@ -60,10 +60,3 @@ def load_features(data: pd.DataFrame) -> bool:
         logger.error(
             f'==> Failed to load features into feature group {config.FEATURE_GROUP_NAME}: {e}')
         return False
-
-
-if __name__ == "__main__":
-    data = pd.read_parquet('data/2022/january_2022-01.parquet')
-    load_features(data)
-    print(data.head())
-    print(data.shape)
