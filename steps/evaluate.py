@@ -1,48 +1,68 @@
-import mlflow.sklearn
+import pandas as pd
+import numpy as np
 import mlflow
+import mlflow.sklearn
 
-from typing import Dict
 from zenml import step, client
+from typing import Annotated, Tuple
 from sklearn.base import BaseEstimator
-from sklearn.metrics import mean_squared_error, mean_absolute_error
+from statsmodels.tools.eval_measures import rmse
 from sklearn.metrics import mean_absolute_percentage_error, r2_score
+from sklearn.metrics import mean_squared_error
 
 from logs import configure_logger
 logger = configure_logger()
-
+    
 tracker = client.Client().active_stack.experiment_tracker
-# Step to evaluate the model
-@step(name='evaluate', experiment_tracker=tracker.name)
-def evaluate(data: Dict, model: BaseEstimator, label='TEST') -> bool:
-    """
-    This step evaluates the model.
 
-    Args:
-        data (Union[pd.DataFrame, None]): The input data.
+
+def compute_aic_bic(y, y_pred, num_params):
+    """
+    Compute the AIC and BIC scores.
+
+    Parameters:
+    - y (array-like): Observed values.
+    - y_pred (array-like): Predicted values.
+    - num_params (int): Number of model parameters.
 
     Returns:
-        bool: True if the model is evaluated successfully, False otherwise.
+    - aic (float): AIC score.
+    - bic (float): BIC score.
+    """
+    n = len(y)
+    resid = y - y_pred
+    rss = np.sum(resid ** 2)
+    aic = 2 * num_params - 2 * np.log(rss)
+    bic = n * np.log(rss / n) + num_params * np.log(n)
+    return float(aic.values), float(bic.values)
+
+
+@step(
+    name='Evalution Step', experiment_tracker=tracker.name, enable_step_logs=True,
+    enable_artifact_metadata=True, enable_artifact_visualization=True)
+
+def evaluate_model(
+    model: Annotated[BaseEstimator, 'trained Model'],
+    X: pd.DataFrame,
+    y: pd.DataFrame,
+) -> Tuple[Annotated[float, 'R2 Score'], Annotated[float, 'MAPE']]:
+    """
+    Evaluate the model
     """
     try:
-        logger.info(f'==> Processing evaluate() on {label}')
-        # Split the data into training and testing sets
-        split = label.lower()
-        X = data[f'X_{split}']
-        y = data[f'y_{split}']
-        y_pred = model.predict(X)
-        # Calculate and log the evaluation metric
+        logger.info("Evaluating model...")
+        y_pred = model.predict(X).reshape(y.shape[0], 1)
+
+        # MAPE, MSE, RMSE, R2, AIC, BIC
+        mape = mean_absolute_percentage_error(y, y_pred)
         mse = mean_squared_error(y, y_pred)
-        mae = mean_absolute_error(y, y_pred)
-        mape = mean_absolute_percentage_error(y, y_pred) * 100
-        r2 = r2_score(y, y_pred) * 100
-        #Log Matrics
-        mlflow.log_metric({f"mse_{label}", mse,
-                          f"mae_{label}", mae,
-                          f"mape_{label}", mape,
-                          f"r2_{label}", r2
-                          })
-        logger.info(f'==> Done processing evaluate() on {label}')
-        return True
+        r2 = r2_score(y, y_pred)
+        rmse_ = float(rmse(y, y_pred))
+        num_params = X.shape[1] + 2
+        aic_, bic_ = compute_aic_bic(y, y_pred, num_params)
+        mlflow.log_metrics(dict(mape=mape, mse=mse, r2=r2,
+                           rmse=rmse_, aic=aic_, bic=bic_))
+        return r2, mape
     except Exception as e:
-        logger.error(f'in evaluate(): {e}')
-        return False
+        logger.error(e)
+        raise e

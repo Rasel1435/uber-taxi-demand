@@ -5,30 +5,25 @@ parent = os.path.dirname(current)
 sys.path.append(parent)
 sys.path.append(os.path.join(parent, 'steps'))
 
-from steps.train import trainXGB
-from steps.split import split
-from steps.evaluate import evaluate
+from steps.train import train_model
+from steps.split import split_data
+from steps.evaluate import evaluate_model
 from zenml import pipeline, client
 
 from logs import configure_logger
 logger = configure_logger()
 
 # Now you can import modules from the parent directory
-@pipeline(enable_artifact_metadata=True,name='trainPipelineUberTaxiDemand',enable_step_logs=True)
+@pipeline(enable_artifact_metadata=True, name='trainPipelineUberTaxiDemand', enable_step_logs=True)
 def trainPipeline():
     """
     Pipeline trains Model.
     """
     try:
-        logger.info('==> Starting trainPipeline()')
         
-        data = split()
-        model = trainXGB(data)
-
-        evaluate(data=data, model=model, label='TRAIN')
-        evaluate(data=data, model=model, label='TEST')
-        
-        logger.info('==> trainPipeline() Completed')
+        X_train, X_test, y_train, y_test = split_data()
+        model = train_model(X_train, y_train)
+        r2_score, mape = evaluate_model(model, X_test, y_test)
 
     except Exception as e:
         logger.error(f'==> Error in trainPipeline(): {e}')

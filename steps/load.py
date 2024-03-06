@@ -1,14 +1,10 @@
 import boto3
 import config
-import logging
 import pandas as pd
 
 from os import path
 from zenml import step
-from joblib import dump
-from typing import Union
 from decimal import Decimal
-from boto3.dynamodb.types import TypeSerializer
 
 from logs import configure_logger
 logger = configure_logger()
